@@ -6,13 +6,15 @@ import (
 )
 
 func TestAdd(t *testing.T) {
-
-	m := new(mocks.Math)
+	mathMock := new(mocks.Math)
+	// m := new(mocks.Math)
+	c := NewCalculator(mathMock)
 
 	// c :=NewCalculator(m)
 
 	t.Run("Success Add", func(t *testing.T) {
-		m.On("Add", 1, 2).Return(3).Once()
+		// c.On("Add", 1, 2).Return(3).Once()
+
 	})
 
 }

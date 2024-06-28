@@ -6,7 +6,7 @@ import (
 )
 
 type Calculator interface {
-	Count(x int, y int, op rune) int
+	Count(x int, y int, op rune) (int, error)
 }
 
 type calculator struct {
@@ -20,6 +20,7 @@ func (c calculator) Count(x int, y int, op rune) (result int, err error) {
 	case '+':
 		result = c.math.Add(x, y)
 	case '-':
+		result, err = c.math.Sub(x, y)
 
 	case '*':
 

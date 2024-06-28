@@ -27,6 +27,34 @@ func (_m *Math) Add(a int, b int) int {
 	return r0
 }
 
+// Sub provides a mock function with given fields: a, b
+func (_m *Math) Sub(a int, b int) (int, error) {
+	ret := _m.Called(a, b)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Sub")
+	}
+
+	var r0 int
+	var r1 error
+	if rf, ok := ret.Get(0).(func(int, int) (int, error)); ok {
+		return rf(a, b)
+	}
+	if rf, ok := ret.Get(0).(func(int, int) int); ok {
+		r0 = rf(a, b)
+	} else {
+		r0 = ret.Get(0).(int)
+	}
+
+	if rf, ok := ret.Get(1).(func(int, int) error); ok {
+		r1 = rf(a, b)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // NewMath creates a new instance of Math. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewMath(t interface {
