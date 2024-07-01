@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 
 	"github.com/labstack/echo/v4"
@@ -11,6 +12,11 @@ func main() {
 
 	midl := func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
+
+			ctx := context.WithValue(c.Request().Context(), "key", "value")
+			req := c.Request().WithContext(ctx)
+
+			c.SetRequest(req)
 
 			log.Println("before handler")
 
