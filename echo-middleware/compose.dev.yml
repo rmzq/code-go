@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+
+    ports:
+      - 1323:1323
+    volumes:
+      - .:/app
+
+    command: ["go", "run", "."]
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./*.go
+          target: /app
